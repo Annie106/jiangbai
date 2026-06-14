@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="江白的个人博客 - 十七岁，诗与日常，一些坦诚的记录。">
+    <title>江白·纸间记事</title>
+    <style>
+        /* ---------- 重置 & 基础 ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 极简系统级字体，无花哨特效，保留真实感 */
+        body {
+            background-color: #ffffff;   /* 纯白背景 */
+            color: #2e2a27;
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Noto Sans', 'Helvetica Neue', 'Microsoft YaHei', '宋体', serif;
+            line-height: 1.55;
+            font-size: 17px;
+            scroll-behavior: smooth;
+        }
+
+        /* 容器宽松居中，留足呼吸感 */
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 2rem 1.8rem 3rem;
+        }
+
+        /* 极少渲染特效，只用基础过渡 */
+        a {
+            text-decoration: none;
+            color: #4e5e5c;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            color: #9f7e69;
+        }
+
+        /* 头部区域 —— 朴素留白 */
+        .site-header {
+            margin-bottom: 2.8rem;
+            border-bottom: 1px solid #e2dbcf;
+            padding-bottom: 1.2rem;
+        }
+        .blog-title {
+            font-size: 2rem;
+            font-weight: 460;
+            letter-spacing: -0.3px;
+            color: #3b2c24;
+            line-height: 1.2;
+            font-family: 'Georgia', 'Times New Roman', '宋体', serif;
+        }
+        .blog-sub {
+            font-size: 0.85rem;
+            color: #8d7a6c;
+            margin-top: 0.5rem;
+            letter-spacing: 0.3px;
+        }
+        /* 极简导航 */
+        .nav-links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1.8rem;
+            font-size: 0.9rem;
+        }
+        .nav-links a {
+            color: #6c5b4f;
+        }
+        .nav-links a:hover {
+            color: #b28b6f;
+        }
+
+        /* 卡片模块：没有玻璃拟态，仅为干净白底 + 细边框 */
+        .card {
+            background: #ffffff;
+            border: 1px solid #e9e1d8;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.2rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        /* 关于区域（个人简介）*/
+        .intro {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .avatar-symbol {
+            width: 68px;
+            height: 68px;
+            background: #e4dbcf;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 400;
+            color: #5a4a3a;
+            font-family: 'Georgia', serif;
+        }
+        .intro-text p {
+            margin-bottom: 0.4rem;
+        }
+        .intro-text .name {
+            font-size: 1.5rem;
+            font-weight: 460;
+            color: #3b2c24;
+            letter-spacing: -0.2px;
+        }
+        .intro-bio {
+            color: #5e5349;
+            font-size: 0.95rem;
+            margin-top: 6px;
+        }
+
+        /* 诗歌区域 —— 主角，无炫彩装饰 */
+        .poem-section {
+            border-left: 4px solid #dccbbd;
+            background: #fefcf9;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 460;
+            margin-bottom: 1rem;
+            color: #4f3f32;
+            display: inline-block;
+            letter-spacing: -0.2px;
+            font-family: 'Georgia', serif;
+        }
+        .poem-meta {
+            font-size: 0.8rem;
+            color: #9a897c;
+            margin-bottom: 1.3rem;
+            border-bottom: 1px dashed #ede3d9;
+            padding-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        /* 诗词主体样式 */
+        .poem-content {
+            font-family: 'Georgia', 'Times New Roman', '宋体', serif;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #2a2622;
+            white-space: pre-line;
+            margin: 1.2rem 0 1rem 0;
+            padding: 0.2rem 0;
+        }
+        .poem-content p {
+            margin-bottom: 0.8rem;
+        }
+        .poem-note {
+            font-size: 0.8rem;
+            color: #ab8e78;
+            margin-top: 1.2rem;
+            border-top: 1px solid #f0e7e0;
+            padding-top: 1rem;
+            font-style: normal;
+        }
+
+        /* 随笔 / 最近记录 —— 减少AI味，手记风格 */
+        .journal-item {
+            margin-bottom: 1.4rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dotted #ede2d8;
+        }
+        .journal-date {
+            font-size: 0.7rem;
+            color: #b8a38f;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.2rem;
+        }
+        .journal-text {
+            font-size: 0.95rem;
+            color: #4e443c;
+            line-height: 1.5;
+        }
+        .journal-text a {
+            color: #9f7e69;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* 页脚 */
+        .site-footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #ab998a;
+            border-top: 1px solid #e9dfd5;
+            padding-top: 2rem;
+        }
+
+        /* 辅助分割线 */
+        .hr-light {
+            height: 1px;
+            background: #ece1d8;
+            margin: 0.5rem 0 1.5rem 0;
+        }
+
+        /* 诗歌修改提示 (极简标注) */
+        .edit-hint {
+            font-size: 0.7rem;
+            background: #f7f2ec;
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            color: #ad8c73;
+            margin-top: 0.8rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .container {
+                padding: 1.4rem 1.2rem 2rem;
+            }
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+            .blog-title {
+                font-size: 1.7rem;
+            }
+            .poem-content {
+                font-size: 0.98rem;
+            }
+            .intro {
+                gap: 1rem;
+            }
+        }
+
+        /* 没有旋转动画，没有大渐变，没有模糊玻璃  —— 减少AI感 */
+        img, iframe, video {
+            display: none;
+        }
+        /* 保留极简选中样式 */
+        ::selection {
+            background: #e7dbcf;
+            color: #3c2c21;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="site-header">
+        <div class="blog-title">江白·独白</div>
+        <div class="blog-sub">十七岁 / 日记与诗 / 北方某城</div>
+        <div class="nav-links">
+            <a href="#">首页</a>
+            <a href="#poem-main">那首诗</a>
+            <a href="#about">关于</a>
+            <a href="#memo">便签</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 关于我的卡片 -->
+        <div class="card" id="about">
+            <div class="intro">
+                <div class="avatar-symbol">江</div>
+                <div class="intro-text">
+                    <div class="name">江白</div>
+                    <div class="intro-bio">17岁 · 高中生 · 喜欢夜里翻书，偶尔写几行字。</div>
+                    <div class="intro-bio" style="font-size:0.85rem; margin-top:5px;">曾经有一个很重要的人，后来在某个深秋走散了。于是文字替我收留了所有没有说完的话。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 诗歌专区 ★ 核心：初恋分手写下的诗 (待自行修改) -->
+        <div class="card poem-section" id="poem-main">
+            <div>
+                <span class="section-title">雨停在那个黄昏</span>
+                <div class="poem-meta">
+                    <span>📖 2026年4月 · 写在春天末尾</span>
+                    <span>✍️ 江白</span>
+                </div>
+                <!--  -->
+                <div class="poem-content" id="editablePoem">
+                    <p>往事依旧，<br>
+                    故人回首，<br>
+                    夕阳映映，<br>
+                    落红皆悲愁。</p>
+
+                </div>
+                <div class="poem-note">
+                    —— 没有结局的故事，刚好留给诗。
+                </div>
+                <!-- 极简提示：用户可自行修改诗歌内容 -->
+                <div class="edit-hint"></div>
+            </div>
+        </div>
+
+        <!-- 一些日常随笔，减少空洞AI感，呈现真实少年气息 -->
+        <div class="card" id="memo">
+            <span class="section-title">最近手记</span>
+            <div class="hr-light"></div>
+            <div class="journal-item">
+                <div class="journal-date">2026.06.10  /  晚自习后</div>
+                <div class="journal-text">
+                    晚风穿过操场，忽然想起去年这个时候有人递给我一瓶冰红茶。现在已经习惯一个人走夜路，耳机里随机播放到某首歌，还是会有瞬间的恍惚。
+                </div>
+            </div>
+            <div class="journal-item">
+                <div class="journal-date">2026.06.02  /  雨天</div>
+                <div class="journal-text">
+                    旧笔记本翻到一页没写完的信。好像有些心情不必结尾，他们自己会飘散在空气里。我在想要不要把那些句子补完，后来觉得就这样空白着也挺好。
+                </div>
+            </div>
+            <div class="journal-item">
+                <div class="journal-date">2026.05.28  /  凌晨</div>
+                <div class="journal-text">
+                    数学卷子写完很累，突然想写几句短诗。最近常梦见中学走廊，但始终看不清脸。可能和某些告别一样，轮廓反而最清晰。
+                </div>
+            </div>
+            <div class="edit-hint" style="margin-top:0.5rem;">✎ 这些日常文字都可以任意替换，博客只是容器，内容属于江白。</div>
+        </div>
+
+        <!-- 一个小小的阅读角落 / 爱好提醒，强调个性 -->
+        <div style="margin: 1rem 0 1.2rem 0; padding: 0 0.2rem;">
+            <div style="font-size:0.8rem; color:#9f8774; border-left:2px solid #decbbc; padding-left: 12px;">
+                “有些诗写完了，就像告一段落的雨。 没有彩虹也没关系。”
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>江白 · 十七岁的棱镜 | 博客不含任何特效与冗余动画</p>
+        <p style="margin-top: 8px; opacity:0.7;"></p>
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #eee;">
+            <p style="color: #5a4a3a; font-size: 0.8rem; font-weight: 460;">本博客由 <a href="mailto:anniedv106@gmail.com" style="color: #4e5e5c;">RH 工作室</a> 维护</p>
+            <p style="margin-top: 6px; opacity:0.75;">
+                邮箱：<a href="mailto:anniedv106@gmail.com" style="color: #4e5e5c;">anniedv106@gmail.com</a>
+            </p>
+        </div>
+    </footer>
+</div>
+
+<!-- 极简辅助说明：无JS效果，完全遵循无动画、克制风格。诗词部分已预留自定义修改区域 -->
+</body>
+</html>
